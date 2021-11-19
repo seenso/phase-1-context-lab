@@ -1,5 +1,23 @@
 /* Your Code Here */
 
+function createEmployeeRecord() {};
+
+function createEmployeeRecords() {};
+
+function createTimeInEvent() {};
+
+function createTimeOutEvent() {};
+
+function hoursWorkedOnDate() {};
+
+function wagesEarnedOnDate() {};
+
+// function allWagesFor() {};
+
+function findEmployeeByFirstName() {};
+
+function calculatePayroll() {};
+
 /*
  We're giving you this function. Take a look at it, you might see some usage
  that's new and different. That's because we're avoiding a well-known, but
