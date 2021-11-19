@@ -1,4 +1,9 @@
 /* Your Code Here */
+
+/* KEYWORD DEFINITIONS
+    this -- a special obj that is part of the current execution contxt. The value of this is determined based on how/where the function is invoked.
+    call -- a method on a function that calls the function, just like ();
+*/
 function createEmployeeRecord(array) {
     return {
       firstName: array[0], //str
@@ -11,22 +16,31 @@ function createEmployeeRecord(array) {
   };
   
   function createEmployeeRecords(array) {
-    let employeeRecords = [];
-  
-    array.forEach(nestedArr => {
-      let newRecord = createEmployeeRecord(nestedArr);
-      employeeRecords.push(newRecord);
-    });
-  
-    return employeeRecords; //arr of objs
+    return array.map(obj => createEmployeeRecord(obj));
   };
   
-  function createTimeInEvent(empObj, dateStr) {
-    const dateStamp = dateStr.slice(0, 10);
-    const hourStamp = parseInt(dateStr.slice(11, 15));
-  
-    empObj.timeInEvents.push({type: "TimeIn", hour: hourStamp, date: dateStamp});
-    return empObj;
+  function createTimeInEvent(dateStr) {
+    const date = dateStr.split(" ")[0];
+    const hour = dateStr.split(" ")[1];
+    
+    const timeObj = {
+        type: "TimeIn",
+        hour: parseInt(hour),
+        date: date
+    }
+    
+    //return the updated employee record
+    console.log("THIS", this); /* logged {
+                                            firstName: 'Byron',
+                                            familyName: 'Poodle',
+                                            title: 'Mascot',
+                                            payPerHour: 3,
+                                            timeInEvents: [],
+                                            timeOutEvents: []
+                                         }
+                                */
+    this.timeInEvents.push(timeObj);
+    return this;
   };
   
   
@@ -34,7 +48,7 @@ function createEmployeeRecord(array) {
     const dateStamp = dateStr.slice(0, 10);
     const hourStamp = parseInt(dateStr.slice(11, 15));
   
-    empObj.timeOutEvents.push({type: "TimeOut", hour: hourStamp, date: dateStamp});
+    this.empObj.timeOutEvents.push({type: "TimeOut", hour: hourStamp, date: dateStamp});
     return empObj;
   };
   
@@ -66,16 +80,16 @@ function createEmployeeRecord(array) {
     return hoursWorkedOnDate(empObj, dateStr) * empObj.payPerHour;
   };
   
-  function allWagesFor(empObj) {
-    let totalWages = 0;
-    let dates = empObj.timeOutEvents; //using timeOut dates in case employee is currently in a shift
+//   function allWagesFor(empObj) {
+//     let totalWages = 0;
+//     let dates = empObj.timeOutEvents; //using timeOut dates in case employee is currently in a shift
   
-    dates.forEach(dateRecord => {
-      totalWages += wagesEarnedOnDate(empObj, dateRecord.date);
-    });
+//     dates.forEach(dateRecord => {
+//       totalWages += wagesEarnedOnDate(empObj, dateRecord.date);
+//     });
   
-    return totalWages;
-  };
+//     return totalWages;
+//   };
   
   function calculatePayroll(array) {
     let payroll = 0;
