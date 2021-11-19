@@ -1,10 +1,13 @@
 /* Your Code Here */
 
 /* KEYWORD DEFINITIONS
-    this -- a special obj that is part of the current execution contxt. The value of this is determined based on how/where the function is invoked.
+    this -- a special obj that is part of the current execution context. The value of this is determined based on how/where the function is invoked.
     call -- a method on a function that calls the function, just like ();
     bind -- a method that returns a COPY of the function it's called on, but w execution context "set" to the argument(s) passed to bind.
 */
+
+//Seems like we just need to replace the empObj with the 'this' keyword as that's what's in the exec context(or scope) of most of these functions
+
 function createEmployeeRecord(array) {
     return {
       firstName: array[0], //str
@@ -50,7 +53,7 @@ function createEmployeeRecord(array) {
   
 //   function createTimeOutEvent(empObj, dateStr) {
 function createTimeOutEvent(dateStr) {
-    // console.log("THIS IN CREATETIMEOUTEVENT", this); // this is employee record obj from test
+    // console.log("THIS", this); // this is employee record obj from test
     const date = dateStr.split(" ")[0];
     const hour = dateStr.split(" ")[1];
   
@@ -58,11 +61,13 @@ function createTimeOutEvent(dateStr) {
     return this;
   };
   
-  function hoursWorkedOnDate(empObj, dateStr) {
+//   function hoursWorkedOnDate(empObj, dateStr) {
+function hoursWorkedOnDate(dateStr) {
+    // console.log("THIS", this.cRecord); // this returned a large complex obj? this.cRecord seems to = the emp record obj.
     let timeIn = 0;
     let timeOut = 0;
-    const timeInArr = empObj.timeInEvents; //arr of objs
-    const timeOutArr = empObj.timeOutEvents; //arr of objs
+    const timeInArr = this.timeInEvents; //arr of objs
+    const timeOutArr = this.timeOutEvents; //arr of objs
   
     //find time in for dateStr
     timeInArr.forEach(timeInRecord => {
@@ -82,8 +87,9 @@ function createTimeOutEvent(dateStr) {
     return (timeOut - timeIn)/100; //convert from military HHMM time to decimal
   };
   
-  function wagesEarnedOnDate(empObj, dateStr) {
-    return hoursWorkedOnDate(empObj, dateStr) * empObj.payPerHour;
+//function wagesEarnedOnDate(empObj, dateStr) {
+function wagesEarnedOnDate(dateStr) {
+    return hoursWorkedOnDate.call(this, dateStr) * this.payPerHour;
   };
   
 //   function allWagesFor(empObj) {

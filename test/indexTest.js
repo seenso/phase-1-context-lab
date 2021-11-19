@@ -134,7 +134,7 @@ describe("The payroll system", function () {
     })
   })
 
-  xdescribe("Given an employee record with a date-matched timeInEvent and timeOutEvent", function () {
+  describe("Given an employee record with a date-matched timeInEvent and timeOutEvent", function () {
 
     it("hoursWorkedOnDate calculates the hours worked when given an employee record and a date", function () {
       expect(hoursWorkedOnDate).to.exist
@@ -150,7 +150,7 @@ describe("The payroll system", function () {
     })
   })
 
-  xdescribe("Given an employee record with a date-matched timeInEvent and timeOutEvent", function () {
+  describe("Given an employee record with a date-matched timeInEvent and timeOutEvent", function () {
 
     it("wagesEarnedOnDate multiplies the hours worked by the employee's rate per hour", function () {
       expect(wagesEarnedOnDate).to.exist
@@ -263,7 +263,7 @@ describe("The payroll system", function () {
       })
     })
 
-    describe("Dependent functions: findEmployeeByFirstName(collection, firstNameString)", function () {
+    xdescribe("Dependent functions: findEmployeeByFirstName(collection, firstNameString)", function () {
       it("exists", function () {
         expect(findEmployeeByFirstName).to.exist
       })
@@ -279,7 +279,7 @@ describe("The payroll system", function () {
       })
     })
 
-    describe("Full Payroll Test", function () {
+    xdescribe("Full Payroll Test", function () {
       /* Imported data courtesy of Ultron Consulting services
        *
        * Why go for smart when you can go for artificially intelligent? -- Ultron
