@@ -101,13 +101,16 @@ function findEmployeeByFirstName(srcArray, firstName) {
   
   function calculatePayroll(array) {
     // console.log("THIS", this); //this is undefined so prob need to .call() some funcs
-    let payroll = 0;
+    // let payroll = 0;
   
-    array.forEach(employee => {
-      payroll += allWagesFor.call(employee); //allWagesFor() doen't have parameters. Look at bottom of page.
-    });
+    // array.forEach(employee => {
+    //   payroll += allWagesFor.call(employee); //allWagesFor() doen't have parameters. Look at bottom of page.
+    // });
   
-    return payroll;
+    // return payroll;
+
+    const reducer = (previousVal, employee) => previousVal + allWagesFor.call(employee); // test didn't like the {} between previousval and the allWagesFor.call(employee)?
+    return array.reduce(reducer, 0);
   };
 
 /*
