@@ -3,6 +3,7 @@
 /* KEYWORD DEFINITIONS
     this -- a special obj that is part of the current execution contxt. The value of this is determined based on how/where the function is invoked.
     call -- a method on a function that calls the function, just like ();
+    bind -- a method that returns a COPY of the function it's called on, but w execution context "set" to the argument(s) passed to bind.
 */
 function createEmployeeRecord(array) {
     return {
@@ -18,7 +19,8 @@ function createEmployeeRecord(array) {
   function createEmployeeRecords(array) {
     return array.map(obj => createEmployeeRecord(obj));
   };
-  
+
+//   function createTimeInEvent(empObj, dateStr) {
   function createTimeInEvent(dateStr) {
     const date = dateStr.split(" ")[0];
     const hour = dateStr.split(" ")[1];
@@ -30,26 +32,30 @@ function createEmployeeRecord(array) {
     }
     
     //return the updated employee record
-    console.log("THIS", this); /* logged {
+    // console.log("THIS", this); 
+                                /* logged {
                                             firstName: 'Byron',
                                             familyName: 'Poodle',
                                             title: 'Mascot',
                                             payPerHour: 3,
                                             timeInEvents: [],
                                             timeOutEvents: []
-                                         }
+                                        }
+                                    above obj is the employee record passed into this function from indexTest.js
                                 */
     this.timeInEvents.push(timeObj);
     return this;
   };
   
   
-  function createTimeOutEvent(empObj, dateStr) {
-    const dateStamp = dateStr.slice(0, 10);
-    const hourStamp = parseInt(dateStr.slice(11, 15));
+//   function createTimeOutEvent(empObj, dateStr) {
+function createTimeOutEvent(dateStr) {
+    // console.log("THIS IN CREATETIMEOUTEVENT", this); // this is employee record obj from test
+    const date = dateStr.split(" ")[0];
+    const hour = dateStr.split(" ")[1];
   
-    this.empObj.timeOutEvents.push({type: "TimeOut", hour: hourStamp, date: dateStamp});
-    return empObj;
+    this.timeOutEvents.push({type: "TimeOut", hour: parseInt(hour), date: date});
+    return this;
   };
   
   function hoursWorkedOnDate(empObj, dateStr) {
