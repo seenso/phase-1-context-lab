@@ -175,7 +175,7 @@ describe("The payroll system", function () {
     })
   })
 
-  xdescribe("Given an employee record with MULTIPLE date-matched timeInEvent and timeOutEvent", function () {
+  describe("Given an employee record with MULTIPLE date-matched timeInEvent and timeOutEvent", function () {
 
     it("allWagesFor aggregates all the dates' wages and adds them together", function () {
       expect(allWagesFor).to.exist
@@ -205,7 +205,7 @@ describe("The payroll system", function () {
     })
   })
 
-  xdescribe("Given an array of multiple employees", function () {
+  describe("Given an array of multiple employees", function () {
     it("payrollExpense aggregates all the dates' wages and adds them together", function () {
       expect(calculatePayroll).to.exist
     })
@@ -243,7 +243,7 @@ describe("The payroll system", function () {
     })
   })
 
- xdescribe("runs payroll using the mock data provided by Ultron data systems", function () {
+ describe("runs payroll using the mock data provided by Ultron data systems", function () {
     describe("Dependent functions: createEmployeeRecords", function () {
       describe("takes CSV data, returns an array of employee records", function () {
         it("exists", function () {
@@ -263,7 +263,7 @@ describe("The payroll system", function () {
       })
     })
 
-    xdescribe("Dependent functions: findEmployeeByFirstName(collection, firstNameString)", function () {
+    describe("Dependent functions: findEmployeeByFirstName(collection, firstNameString)", function () {
       it("exists", function () {
         expect(findEmployeeByFirstName).to.exist
       })
@@ -279,7 +279,7 @@ describe("The payroll system", function () {
       })
     })
 
-    xdescribe("Full Payroll Test", function () {
+    describe("Full Payroll Test", function () {
       /* Imported data courtesy of Ultron Consulting services
        *
        * Why go for smart when you can go for artificially intelligent? -- Ultron

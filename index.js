@@ -2,7 +2,7 @@
 
 /* KEYWORD DEFINITIONS
     this -- a special obj that is part of the current execution context. The value of this is determined based on how/where the function is invoked.
-    call -- a method on a function that calls the function, just like ();
+    call -- a method on a function that calls the function, just like (); USE .CALL() when you need to pass in the "this" keyword. See wagesEarnedOnDate() function.
     bind -- a method that returns a COPY of the function it's called on, but w execution context "set" to the argument(s) passed to bind.
 */
 
@@ -92,22 +92,19 @@ function wagesEarnedOnDate(dateStr) {
     return hoursWorkedOnDate.call(this, dateStr) * this.payPerHour;
   };
   
-//   function allWagesFor(empObj) {
-//     let totalWages = 0;
-//     let dates = empObj.timeOutEvents; //using timeOut dates in case employee is currently in a shift
-  
-//     dates.forEach(dateRecord => {
-//       totalWages += wagesEarnedOnDate(empObj, dateRecord.date);
-//     });
-  
-//     return totalWages;
-//   };
+// function allWagesFor(empObj) {}
+// the allWagesFor() function has been given to us at the very bottom
+
+function findEmployeeByFirstName(srcArray, firstName) {
+    return srcArray.find(emp => emp.firstName === firstName);
+};
   
   function calculatePayroll(array) {
+    // console.log("THIS", this); //this is undefined so prob need to .call() some funcs
     let payroll = 0;
   
     array.forEach(employee => {
-      payroll += allWagesFor(employee);
+      payroll += allWagesFor.call(employee); //allWagesFor() doen't have parameters. Look at bottom of page.
     });
   
     return payroll;
